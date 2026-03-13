@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Network Enhancer - CAMTEL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+<!-- CSS File -->
+<link rel="stylesheet" href="{% static 'feedback/main.css/style.css' %}">
+
+
+<!-- JS File -->
+<script src="{% static 'feedback/main.js' %}"></script>
+
+<!-- Image File -->
+
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+
+header {
+    background-color: #004080;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header-1 {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header-1 li {
+    display: inline;
+}
+
+.header-1 a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.header-1 a:hover,
+.header-1 a.active {
+    background-color: #0066cc;
+}
+
+
+
+
+    .h1-1 h1 {
+      text-align: center;
+      margin-top: 200px;
+      color: yellow;
+      margin-bottom: 40px;
+    }
+     
+/* Logo */
+.logo {
+    width: 100px;
+    height: 80px;
+    margin-right: 20px;
+}
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background:white;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    #map {
+      height: 300px;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+
+    .man-1 {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color:white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .man-1:hover {
+      background: #0056b3;
+    }
+
+    label.shift {
+      display: block;
+      margin: 10px 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a><img class="logo" src="{% static 'feedback/images/logo2.png' %}" alt="Logo"></a>
+    <nav class="header-1">
+      <li><a class="active" href="{% url 'index' %}">HOME</a></li>
+      <li><a href="{% url 'signup' %}">SIGNUP</a></li>
+      <li><a class="nh-network">NH-NETWORK</a></li>
+      <li><a href="{% url 'login' %}">LOGIN</a></li>
+      <li><a href="{% url 'about' %}">ABOUT</a></li>
+    </nav>
+  </header>
+
+  <div class="h1-1">
+    <h1>CAMTEL Network Feedback</h1>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      
+      <p><strong>Provider:</strong> CAMTEL Cameroon</p>
+      <p><strong>Speed:</strong> <span id="speed">Testing...</span></p>
+      <input type="hidden" name="speed" id="speed-field">
+      
+
+
+      <p><strong>Signal:</strong> ▂▄▆█</p>
+     
+      <p><strong>IP Address:</strong> <span id="ip-address">Loading...</span></p>
+    </div>
+
+    <div id="map">Loading map...</div>
+
+    <form id="feedback-form" method="POST" action="{% url 'camtel' %}">
+     {% csrf_token %}
+      <input type="hidden" name="provider" value="CAMTEL Cameroon" />
+      <input type="hidden" name="ip_address" id="ip-field" />
+      <input type="hidden" name="latitude" id="lat-field" />
+      <input type="hidden" name="longitude" id="lon-field" />
+
+      <label class="shift" for="rating">Rate the Network (1-5):</label>
+      <input type="number" name="rating" min="1" max="5" required />
+
+      <label class="shift" for="comment">Comment:</label>
+      <textarea name="comment" required></textarea>
+
+      <button class="man-1" type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // IP address
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip-address').textContent = data.ip;
+        document.getElementById('ip-field').value = data.ip;
+      });
+
+    // Load map
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        document.getElementById("lat-field").value = lat;
+        document.getElementById("lon-field").value = lon;
+
+        const map = L.map('map').setView([lat, lon], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([lat, lon]).addTo(map)
+          .bindPopup("You are here").openPopup();
+
+      }, function () {
+        document.getElementById("map").innerHTML = "Location access denied.";
+      });
+    } else {
+      document.getElementById("map").innerHTML = "Geolocation is not supported.";
+    }
+
+    //testing speed 
+
+function testSpeed() {
+  const image = new Image();
+  const startTime = new Date().getTime();
+  image.onload = () => {
+    const endTime = new Date().getTime();
+    const duration = (endTime - startTime) / 1000;
+    const bitsLoaded = 500000 * 8; // Assume 500KB image
+    const speedMbps = (bitsLoaded / duration / 1024 / 1024).toFixed(2);
+    document.getElementById('speed').textContent = `${speedMbps} Mbps`;
+    document.getElementById('speed-field').value = speedMbps;
+  };
+  image.src = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg?nocache=" + Math.random();
+}
+
+window.onload = testSpeed;
+
+
+
+
+  fetch('https://ipinfo.io/json?token=your_token')
+    .then(response => response.json())
+    .then(data => {
+      console.log("ISP:", data.org);
+      if (!data.org.includes("CAMTEL")) {
+        alert("You're not on the CAMTEL network!");
+      }
+    });
+
+
+  </script>
+</body>
+</html>

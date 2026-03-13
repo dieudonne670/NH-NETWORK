@@ -1,0 +1,170 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Network enhancer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'feedback/main.css/style.css' %}">
+
+    <style>
+        /* Login design */
+        header {
+            background-color: #004080;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .header-1 {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-1 li {
+            display: inline;
+        }
+
+        .header-1 a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-1 a:hover,
+        .header-1 a.active {
+            background-color: #0066cc;
+        }
+
+
+/* Logo */
+.logo {
+    width: 100px;
+    height: 80px;
+    margin-right: 5px;
+}
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            padding: 80px;
+            margin-right: 80px;
+            color: orange;
+        }
+
+        .login-form-1 h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            color: blue;
+        }
+
+        .login-form-1 label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #0066cc;
+        }
+
+        .login-form-1 input {
+            height: 40px;
+            width: 120%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 13px;
+            cursor: pointer;
+        }
+
+        .login-form-1 button {
+            width: 138%;
+            background-color: #7e29f2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .links a {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <a><img class="logo" src="{% static 'feedback/images/logo2.png' %}" alt="Logo"></a>
+    <div>
+        <nav class="header-1">
+            <li><a href="{% url 'index' %}">HOME</a></li>
+            <li><a href="{% url 'signup' %}">SIGNUP</a></li>
+            <li><a class="nh-network">NH-NETWORK</a></li>
+            <li><a class="active" href="{% url 'login' %}">LOGIN</a></li>
+            <li><a href="{% url 'about' %}">ABOUT</a></li>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <form class="login-form-1" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h2>Sign in</h2>
+
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span class="toggle-password"></span>
+            </div>
+
+            <button type="submit">Login</button>
+
+            <div class="links">
+                <a href="#">Forgotten your password?</a>
+                <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+            </div>
+
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        </form>
+    </div>
+</section>
+
+<footer></footer>
+<script src="main.js/script.js"></script>
+</body>
+</html>

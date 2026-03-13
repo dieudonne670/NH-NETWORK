@@ -1,0 +1,189 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Network enhancer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{% static 'feedback/main.css/style.css' %}">
+<style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+/* Header */
+header {
+    background-color: #004080;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header-1 {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header-1 li {
+    display: inline;
+}
+
+.header-1 a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.header-1 a:hover,
+.header-1 a.active {
+    background-color: #0066cc;
+}
+
+/* Body section */
+.body {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #e9f0f8;
+}
+
+.body h1 {
+    font-size: 2.5em;
+    color: #004080;
+    margin-bottom: 30px;
+}
+/* Logo */
+.logo {
+    width: 100px;
+    height: 80px;
+    margin-right: 20px;
+}
+/* Cover text section */
+.cover-1-text {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #444;
+    background: #fff;
+    border-left: 5px solid #004080;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    
+}
+
+/* Continue button */
+.continue-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    text-decoration: none;
+}
+
+.btn-43 {
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-43:hover {
+    background-color: #0066cc;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+
+
+</style>
+    
+</head>
+
+<body>
+
+<header>
+<a><img class="logo" src="{% static 'feedback/images/logo2.png' %}" alt="Logo"></a>
+
+<div>
+ <nav class="header-1">
+
+ <li><a  class="active" href="{% url 'index' %}">HOME</a></li> 
+ <li><a href="{% url 'signup' %}">SIGNUP</a></li>  
+
+<li><a class="nh-network"> NH-NETWORK </a></li>
+<li><a href="{% url 'login' %}">LOGIN</a></li>
+<li><a href="{% url 'about' %}">ABOUT</a></li>
+
+
+    </nav>
+ </nav>
+</div>
+</header>
+
+<section>
+<div class="body">
+
+<h1>Welcome to NH-NETWORK</h1>
+
+
+</div>
+
+</section>
+ <section>
+
+    <div>
+            <p class="cover-1-text">NH-network is  web-application platform to enhance 
+    network performance monitoring and user satisfaction for
+    mobile subscribers of providers such as MTN, Orange, and others. 
+    The app will track metrics like signal strength and internet speed,
+    and gather feedback on your network experience. Your input is critical
+    to defining features that meet your needs. This survey takes approximately 
+    2-3 minutes to complete. Thank you for contributing             
+    to a better mobile experience! Please  for us to collect successful data make sure  
+    your not connected to a vpn or any wifi just the mobile network of the provider you are using.  THANKS!        
+    please click on the button below to continue.</p>
+             <a href="{% url 'login' %}" class="continue-button"> <button class="btn-43"> Continue!
+
+             </button>
+</a>
+        </div>
+  
+    </section>
+
+<footer>
+</footer>
+
+<script src="main.js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NH-Network Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>NH-Network Feedback Analytics</h1>
+
+    <p><strong>Total Feedback Collected:</strong> {{ total_feedback }}</p>
+
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <!-- Bar Chart -->
+        <div>
+            <h2>Feedback by Provider (Bar Chart)</h2>
+            <canvas id="barChart" width="400" height="300"></canvas>
+        </div>
+
+        <!-- Pie Chart -->
+        <div>
+            <h2>Feedback by Provider (Pie Chart)</h2>
+            <canvas id="pieChart" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const labels = ["MTN", "Orange", "Camtel", "Nexttel"];
+        const dataCounts = [
+            {{ provider_counts.MTN }},
+            {{ provider_counts.Orange }},
+            {{ provider_counts.Camtel }},
+            {{ provider_counts.Nexttel }}
+        ];
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Feedback Entries',
+                    data: dataCounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        });
+
+        // Pie Chart
+        new Chart(document.getElementById('pieChart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Feedback Distribution',
+                    data: dataCounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+
+
+
+        
+    </script>
+
+    <h2>Raw Counts</h2>
+    <ul>
+        <li>MTN: {{ provider_counts.MTN }} feedback(s)</li>
+        <li>Orange: {{ provider_counts.Orange }} feedback(s)</li>
+        <li>Camtel: {{ provider_counts.Camtel }} feedback(s)</li>
+        <li>Nexttel: {{ provider_counts.Nexttel }} feedback(s)</li>
+    </ul>
+</body>
+</html>

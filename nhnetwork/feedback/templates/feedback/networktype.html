@@ -1,0 +1,202 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Network enhancer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{% static 'feedback/main.css/style.css' %}">
+
+    <style>
+
+        /* Already provided header + global styles from index.html (keep them) */
+
+/* Reuse header styles (already in previous CSS) */
+header {
+    background-color: #004080;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header-1 {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header-1 li {
+    display: inline;
+}
+
+.header-1 a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.header-1 a:hover,
+.header-1 a.active {
+    background-color: #0066cc;
+}
+
+
+/* NETWORK-TYPE SECTION */
+.network-type {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #eaf1fb;
+}
+
+.network-type h2 {
+    font-size: 2.2em;
+    color: #003366;
+    margin-bottom: 40px;
+}
+
+/* Layout for network icons */
+.network-type .network-1 {
+    display: inline-block;
+    margin: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.network-type .network-1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.network-type img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    transition: filter 0.3s ease;
+}
+
+.network-type img:hover {
+    filter: brightness(1.05);
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    height: 80px;
+    margin-right: 20px;
+}
+/* Responsive layout for smaller screens */
+@media screen and (max-width: 768px) {
+    .network-type .network-1 {
+        margin: 15px;
+    }
+
+    .network-type img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .network-type img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+<a><img class="logo" src="{% static 'feedback/images/logo2.png' %}" alt="Logo"></a>
+
+<div>
+ <nav class="header-1">
+
+ <li><a   href="{% url 'index' %}">HOME</a></li> 
+ <li><a href="{% url 'signup' %}">SIGNUP</a></li>  
+
+<li><a class="nh-network"> NH-NETWORK </a></li>
+<li><a class="active" href="{% url 'login' %}">LOGIN</a></li>
+<li><a href="{% url 'about' %}">ABOUT</a></li>
+
+
+    </nav>
+ </nav>
+</div>
+</header>
+
+<section class="network-type">
+    <h2>Choose your Service</h2>
+            
+
+    
+                            <div class="network-1">
+                                
+                                <a href="{% url 'mtn' %}">
+            <img class="MTN" src="{% static 'feedback/images/1000643436.jpg' %}" alt="mtn-network">
+                        </a>    
+                            
+                        </div>
+
+
+                    
+                            
+                    `        <div class="network-1">
+                             
+                            <a href="{% url 'camtel' %}">
+                  <img src="{% static 'feedback/images/1000643438.jpg' %}" alt="camtel-network">
+                        </a>
+                        
+                        </div>
+
+                        
+
+                        <div class="network-1">
+                            
+                            <a href="{% url 'orange' %}">
+            <img class="MTN" src="{% static 'feedback/images/images (1).png' %}" alt="orange-network">
+                        </a>
+                       
+
+                        </div>
+
+
+                        
+                        <div class="network-1">
+                            
+                            <a href="{% url 'nexttel' %}">
+                                <img src="{% static 'feedback/images/Pasted image.png' %}" alt="nexttel-network">
+                        </a>
+                        
+
+                        </div>
+
+
+
+    
+</section>
+
+
+
+
+
+
+<footer>
+</footer>
+
+<script src="main.js/script.js"></script>
+</body>
+</html>
