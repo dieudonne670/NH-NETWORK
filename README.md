@@ -96,21 +96,20 @@ Admin Manual Trigger
 /admin/feedback/camtelfeedback/send-to-camtel/
 /admin/feedback/nexttelfeedback/send-to-nexttel/
 
-📊 Analytics Dashboard
-
-The admin analytics page provides:
-
-Total feedback count
-Provider-by-provider statistics
-Most common ratings
-Geographic mapping of poor coverage
-Downloadable CSV insights
 
 
 <img width="1279" height="631" alt="Screenshot from 2026-03-27 16-07-39" src="https://github.com/user-attachments/assets/44202d8e-94be-4d63-8b2e-f1b93432a198" />
+📊 Analytics Dashboard
+Total feedback count
+The admin analytics page provides:
 
 <img width="1279" height="631" alt="Screenshot from 2026-03-27 16-41-35" src="https://github.com/user-attachments/assets/9fe497ae-5f36-499b-964e-b54578f2e0f6" />
+Provider-by-provider statistics
+Most common ratings
+
 <img width="715" height="631" alt="Screenshot from 2026-03-27 16-42-55" src="https://github.com/user-attachments/assets/354853e9-f6d7-4af5-b02c-ae4ed2b83744" />
+Geographic mapping of poor coverage
+Downloadable CSV insights
 
 
 
