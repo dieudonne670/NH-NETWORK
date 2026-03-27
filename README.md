@@ -4,7 +4,6 @@ A Django-powered system that collects, analyzes, and reports mobile network perf
 
 
 🚀 Overview
-***LIVE DEMO***
 ***LIVE DEMO LINK***
 the NH-NETWORK
 https://nh-network.onrender.com/
